@@ -1,9 +1,5 @@
 # -------- values decided by governing authority -----
 
-from GUI.GUI_ExaminationScheduling import *
-main_window_obj = MainWindow()
-print(main_window_obj.click_box())
-
 totalWorkingDays = 5
 total_slot_no = 3
 days_list = []

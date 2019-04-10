@@ -1,48 +1,68 @@
 import sys
 from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
 
 
-class MainWindow(QMainWindow):
+class TimetableSchedulingMainWindow(QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
 
         # main window properties
 
         self.setFixedSize(900, 520)
-        self.setWindowTitle('Main Window')
+        self.setWindowTitle('Time Table Scheduling')
 
         """----------------------WIDGETS USED-------------------------------------------"""
         # central widget (main parent widget)
         self.container = QWidget(self)
+        # self.container.setFixedSize(880, 480)
         self.container.setGeometry(10, 20, 880, 480)
         # self.container.setStyleSheet(" border:1px solid rgb(0, 0, 25);")
 
+        # contains the text 'Time Table Scheduling'
         self.upper_Title_Widget = QWidget(self.container)
-        self.upper_Title_Widget.setGeometry(0, 0, 880, 50)
+        # self.upper_Title_Widget.setFixedSize(880, 50)
+        self.upper_Title_Widget.setGeometry(0, 0, 880, 40)
         # self.upper_Title_Widget.setStyleSheet(" border:1px solid rgb(0, 140, 255);")
 
+        # this contains three lables and three TextEdits for the user to enter the no of
+        #         slots, working days and number of batches
         self.upper_Widget = QWidget(self.container)
-        self.upper_Widget.setGeometry(0, 50, 880, 90)
+        # self.upper_Widget.setFixedSize(880, 90)
+        self.upper_Widget.setGeometry(0, 20, 880, 90)
         # self.upper_Widget.setStyleSheet(" border:1px solid rgb(0, 140, 255);")
 
+        # contains the top horizontal line
+        self.top_h_line_widget = QWidget(self.container)
+        self.top_h_line_widget.setGeometry(0, 100, 880, 20)
+        # self.top_h_line_widget.setStyleSheet(" border:1px solid rgb(70, 90, 255);")
+
+        """"# contains a Vertical line that divides the semester and the course
         self.middle_middle_Widget = QWidget(self.container)
+        # self.upper_Widget.setFixedSize(30, 250)
         self.middle_middle_Widget.setGeometry(440, 150, 30, 250)
-        # self.middle_middle_Widget.setStyleSheet(" border:1px solid rgb(0, 45, 255);")
+        # self.middle_middle_Widget.setStyleSheet(" border:1px solid rgb(0, 45, 255);")"""
 
-        self.middle_left_Widget = QWidget(self.container)
-        self.middle_left_Widget.setGeometry(100, 120, 440, 300)
-        # self.middle_left_Widget.setStyleSheet(" border:1px solid rgb(255, 45, 255);")
+        # contains a label and Radio buttons required to get the course
+        self.semester_Widget = QWidget(self.container)
+        # self.semester_Widget_Widget.setFixedSize(440, 300)
+        self.semester_Widget.setGeometry(100, 90, 680, 150)
+        # self.semester_Widget.setStyleSheet(" border:1px solid rgb(255, 45, 255);")
 
-        self.middle_right_Widget = QWidget(self.container)
-        self.middle_right_Widget.setGeometry(570, 120, 440, 300)
-        # self.middle_right_Widget.setStyleSheet(" border:1px solid rgb(255, 170, 0 );")
+        # contains a label and check boxes required to get the list of semesters
+        self.course_Widget = QWidget(self.container)
+        # self.course_Widget.setFixedSize(440, 300)
+        self.course_Widget.setGeometry(100, 240, 680, 150)
+        # self.course_Widget.setStyleSheet(" border:1px solid rgb(255, 170, 0 );")
 
+        # contains the last three buttons i.e. Submit, Reset, Cancel
         self.lower_Widget = QWidget(self.container)
-        self.lower_Widget.setGeometry(0, 440, 880, 40)
+        # self.lower_Widget.setFixedSize(880, 40)
+        self.lower_Widget.setGeometry(400, 440, 480, 40)
         # self.lower_Widget.setStyleSheet(" border:1px solid rgb(0, 200, 45);")
 
+        # contains the last vertical line used at the bottom of the window
         self.last_Line_widget = QWidget(self.container)
+        # self.last_Line_widget.setFixedSize(880, 20)
         self.last_Line_widget.setGeometry(0, 420, 880, 20)
         # self.last_Line_widget.setStyleSheet(" border:1px solid rgb(0, 2, 45);")
 
@@ -63,34 +83,47 @@ class MainWindow(QMainWindow):
         self.course_radiobutton_creation()
         self.textbox_creation()
         self.title_label()
-        self.addHline()
-        self.add_last_hline()
+        self.add_top_h_line()
+        # self.add_v_line()
+        self.add_last_h_line()
 
     """this function creates the checkboxes for the user to select the semester"""
 
     def title_label(self):
-        self.TitleLayout = QVBoxLayout(self.upper_Title_Widget)
+        # self.TitleLayout = QVBoxLayout(self.upper_Title_Widget)
         self.SemesterLabel = QLabel(" EXAMINATION SCHEDULING ", self.upper_Title_Widget)
-        self.SemesterLabel.setStyleSheet("font: 10pt Comic Sans MS")
-        self.VLine = QFrame(self.upper_Title_Widget)
+        self.SemesterLabel.setStyleSheet("font: 15pt Sans MS")
+
+    """ this function adds the top horizontal line """
+
+    def add_top_h_line(self):
+        self.top_h_line_Layout = QVBoxLayout(self.top_h_line_widget)
+        self.VLine = QFrame(self.top_h_line_widget)
         self.VLine.setFrameShape(QFrame.HLine)
         self.VLine.setFrameShadow(QFrame.Sunken)
-        self.TitleLayout.addWidget(self.SemesterLabel)
-        self.TitleLayout.addWidget(self.VLine)
+        self.top_h_line_Layout.addWidget(self.VLine)
 
-    def addHline(self):
+
+    """this function adds the last horizontal line
+
+    def add_v_line(self):
         self.lineLayout = QVBoxLayout(self.middle_middle_Widget)
         self.VLine = QFrame(self.middle_middle_Widget)
         self.VLine.setFrameShape(QFrame.VLine)
         self.VLine.setFrameShadow(QFrame.Sunken)
-        self.lineLayout.addWidget(self.VLine)
+        self.lineLayout.addWidget(self.VLine)"""
 
-    def add_last_hline(self):
+    """this function adds the a vertical line in between course and and semester"""
+
+    def add_last_h_line(self):
         self.last_lineLayout = QVBoxLayout(self.last_Line_widget)
         self.VLine = QFrame(self.last_Line_widget)
         self.VLine.setFrameShape(QFrame.HLine)
         self.VLine.setFrameShadow(QFrame.Sunken)
         self.last_lineLayout.addWidget(self.VLine)
+
+    """ this function creates three lables and three TextEdits for the user to enter the no of
+        slots, working days and number of batches"""
 
     def textbox_creation(self):
         self.TexteditLayout = QHBoxLayout(self.upper_Widget)
@@ -104,7 +137,7 @@ class MainWindow(QMainWindow):
         self.workingdaysTextbox.setFixedWidth(100)
         self.workingdaysTextbox.setFixedHeight(25)
 
-        self.BatchLabel = QLabel("Enter The Number Of Batch", self.container)
+        self.BatchLabel = QLabel("Enter The Number Of Batches", self.container)
         self.BatchTextbox = QLineEdit(self.container)
         self.BatchTextbox.setFixedWidth(100)
         self.BatchTextbox.setFixedHeight(25)
@@ -120,12 +153,16 @@ class MainWindow(QMainWindow):
         self.TexteditLayout.addWidget(self.BatchLabel)
         self.TexteditLayout.addWidget(self.BatchTextbox)
 
+    """This function contains a label and check boxes required to get the list of semesters"""
+
     def semester_checkbox_creation(self):
-        self.SemesterLayout = QVBoxLayout(self.middle_left_Widget)
+        self.SemesterLayout = QVBoxLayout(self.semester_Widget)
+        self.Semester_check_Layout = QHBoxLayout(self.semester_Widget)
         # container layout contains the " CHOOSE THE SEMESTERS " label and the semester checkboxes
 
-        self.SemesterLabel = QLabel(" CHOOSE THE SEMESTERS ", self.middle_left_Widget)
-        self.SemesterLabel.setFixedSize(400, 50)
+        self.SemesterLabel = QLabel("\t\t\t\t CHOOSE THE SEMESTERS ", self.semester_Widget)
+        self.SemesterLabel.setStyleSheet("font: 12pt Sans MS")
+        # self.SemesterLabel.setFixedSize(400, 50)
         self.SemesterLayout.addWidget(self.SemesterLabel)
 
         for semesters in range(6):
@@ -134,30 +171,34 @@ class MainWindow(QMainWindow):
 
         for semesters in self.checkBoxes:
             # print(semesters)
-            self.returnFunctionCombo = self.check_box_creation(semesters)
+            self.returnFunctionCombo = self.check_box_instance(semesters)
             self.checkBoxesList.append(self.returnFunctionCombo)
             # print(self.checkBoxesList)
-            self.SemesterLayout.addWidget(self.returnFunctionCombo)
+            self.Semester_check_Layout.addWidget(self.returnFunctionCombo)
+            # self.Semester_check_Layout.addStretch(1)
+        self.SemesterLayout.addLayout(self.Semester_check_Layout)
 
     """ the function contains the common properties of every checkboxes 
         i contains the text of all the checkboxes that is provided by the semester_check function"""
 
-    def check_box_creation(self, i):
+    def check_box_instance(self, i):
         # print(i)
         self.multipleCheckboxes = QCheckBox(i, self.container)
         # self.multipleCheckboxes.stateChanged.connect(self.click_box)
         return self.multipleCheckboxes
 
-    """ this functions create the combo buttons to select the course"""
+    """ this functions create the Radio buttons to select the course"""
 
     def course_radiobutton_creation(self):
         self.radioButton = []
         self.radioButtonList = []
-        self.radioButton = QVBoxLayout(self.middle_right_Widget)
+        self.radioButton = QVBoxLayout(self.course_Widget)
+        self.Course_radio_Layout = QHBoxLayout(self.course_Widget)
         # container layout contains the " CHOOSE THE SEMESTERS " label and the semester checkboxes
 
-        self.SemesterLabel = QLabel(" CHOOSE THE COURSE ", self.middle_right_Widget)
-        self.SemesterLabel.setFixedSize(400, 50)
+        self.SemesterLabel = QLabel(" \t\t\t\t CHOOSE THE COURSE ", self.course_Widget)
+        self.SemesterLabel.setStyleSheet("font: 12pt Sans MS")
+        # self.SemesterLabel.setFixedSize(400, 50)
         self.radioButton.addWidget(self.SemesterLabel)
         self.courseList = ["MCA", "M Sc. IT", "M TECH.", "MBA", "MA(ENGLISH)", "MCA(EVENING)"]
 
@@ -166,7 +207,8 @@ class MainWindow(QMainWindow):
             self.radiobutton_creation_func_called = self.radio_button_instance_creation(semesters)
             self.radioButtonList.append(self.radiobutton_creation_func_called)
             # print(self.radioButtonList)
-            self.radioButton.addWidget(self.radiobutton_creation_func_called)
+            self.Course_radio_Layout.addWidget(self.radiobutton_creation_func_called)
+            self.radioButton.addLayout(self.Course_radio_Layout)
 
     """ the function contains the common properties of every checkboxes 
         i contains the text of all the checkboxes that is provided by the semester_check function"""
@@ -176,6 +218,8 @@ class MainWindow(QMainWindow):
         self.multipleCheckboxes = QRadioButton(i, self.container)
         # self.multipleCheckboxes.stateChanged.connect(self.click_box)
         return self.multipleCheckboxes
+
+    """this function creates 3 Push Buttons i.e. Submit, reset, cancel"""
 
     def button_creation(self):
         self.buttonLayout = QHBoxLayout(self.lower_Widget)
@@ -193,6 +237,10 @@ class MainWindow(QMainWindow):
         self.buttonLayout.addWidget(self.Cancel)
         self.buttonLayout.addWidget(self.Reset)
 
+    """this function gets automatically triggered when the user clicks on the submit button
+        and the user gets the list of semesters and name of the course for which the timtable 
+        is to be generated"""
+
     def click_box(self):
 
         for i in range(6):
@@ -205,34 +253,27 @@ class MainWindow(QMainWindow):
                 pass
                 # print(self.checkBoxesList[i].text())
                 # print('Unchecked')
-        print(self.semestersSelected)
+        # print(self.semestersSelected)
 
         for j in range(6):
             if self.radioButtonList[j].isChecked():
                 # print(self.checkBoxesList[i].text())
                 # print("checked")
-                #self.semestersSelected.append(self.radioButtonList[j].text())
-                print(self.radioButtonList[j].text())
+                # self.semestersSelected.append(self.radioButtonList[j].text())
+                self.selectedSemester= self.radioButtonList[j].text()
+                # print(self.selectedSemester)
 
             else:
                 pass
                 # print(self.checkBoxesList[i].text())
                 # print('Unchecked')
-
+        return self.selectedSemester, self.selectedSemester
         exit()
-
-
 
     def undo_changes(self):
         pass
 
-
-def main():
-    application = QApplication(sys.argv)
-    main_window_obj = MainWindow()
-    main_window_obj.show()
-    sys.exit(application.exec_())
-
-
-if __name__ == '__main__':
-    main()
+application = QApplication(sys.argv)
+main_window_obj = TimetableSchedulingMainWindow()
+main_window_obj.show()
+sys.exit(application.exec_())

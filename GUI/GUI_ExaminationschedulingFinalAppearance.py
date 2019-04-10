@@ -2,6 +2,7 @@ import sys
 from PyQt5.QtWidgets import *
 from Detached.Global.Variables.varTimetableFile import *
 from Detached.Classes.ExamScheduling import *
+
 ExamScheduleMappingObj = ExamScheduleMapping()
 
 
@@ -38,18 +39,16 @@ class Timetable(QWidget):
         # self.tableWidget.setHorizontalHeaderLabels()
         l = 0
         for i in range((totalWorkingDays)):
-            j= 0
+            j = 0
 
-            while(j<=total_slot_no-1):
+            while (j <= total_slot_no - 1):
                 # print(i , j)
                 # print(l)
-                self.tableWidget.setItem(i, j, QTableWidgetItem(ExamScheduleMappingObj.a[l]))
-                j = j+1
-                if (l < len(ExamScheduleMappingObj.a)):
+                self.tableWidget.setItem(i, j,
+                                         QTableWidgetItem(ExamScheduleMappingObj.single_dimension_array_of_subjects[l]))
+                j = j + 1
+                if l < len(ExamScheduleMappingObj.single_dimension_array_of_subjects):
                     l = l + 1
-        """self.tableWidget.setItem(0, 0, QTableWidgetItem())
-        self.tableWidget.setItem(0, 1, QTableWidgetItem())
-        self.tableWidget.setItem(0, 2, QTableWidgetItem())"""
 
         self.tableWidget.resizeColumnsToContents()
 
@@ -64,3 +63,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    print(main)
