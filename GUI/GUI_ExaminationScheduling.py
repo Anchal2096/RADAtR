@@ -28,7 +28,7 @@ class TimetableSchedulingMainWindow(QMainWindow):
         #         slots, working days and number of batches
         self.upper_Widget = QWidget(self.container)
         # self.upper_Widget.setFixedSize(880, 90)
-        self.upper_Widget.setGeometry(0, 20, 880, 90)
+        self.upper_Widget.setGeometry(30, 20, 800, 90)
         # self.upper_Widget.setStyleSheet(" border:1px solid rgb(0, 140, 255);")
 
         # contains the top horizontal line
@@ -45,7 +45,7 @@ class TimetableSchedulingMainWindow(QMainWindow):
         # contains a label and Radio buttons required to get the course
         self.semester_Widget = QWidget(self.container)
         # self.semester_Widget_Widget.setFixedSize(440, 300)
-        self.semester_Widget.setGeometry(150, 90, 600, 150)
+        self.semester_Widget.setGeometry(200, 90, 500, 150)
         # self.semester_Widget.setStyleSheet(" border:1px solid rgb(255, 45, 255);")
 
         # contains a label and check boxes required to get the list of semesters
@@ -160,7 +160,7 @@ class TimetableSchedulingMainWindow(QMainWindow):
         self.Semester_check_Layout = QHBoxLayout(self.semester_Widget)
         # container layout contains the " CHOOSE THE SEMESTERS " label and the semester checkboxes
 
-        self.SemesterLabel = QLabel("\t\t\t     CHOOSE THE SEMESTERS ", self.semester_Widget)
+        self.SemesterLabel = QLabel("\t\t       CHOOSE THE SEMESTERS ", self.semester_Widget)
         self.SemesterLabel.setStyleSheet("font: 12pt Sans MS")
         # self.SemesterLabel.setFixedSize(400, 50)
         self.SemesterLayout.addWidget(self.SemesterLabel)

@@ -1,7 +1,8 @@
 # -------- values decided by governing authority -----
+from Detached.Classes.ExamScheduling import *
 
-totalWorkingDays = 5
-total_slot_no = 3
+totalWorkingDays = ExamScheduleMappingObj.working_days
+total_slot_no = ExamScheduleMappingObj.total_slots
 days_list = []
 slot_list = []
 examination_scheduling_generation_limit = 5

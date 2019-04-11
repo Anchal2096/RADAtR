@@ -29,8 +29,8 @@ class Timetable(QWidget):
         # Create table
 
         self.tableWidget = QTableWidget()
-        self.tableWidget.setRowCount(totalWorkingDays)
-        self.tableWidget.setColumnCount(total_slot_no)
+        self.tableWidget.setRowCount(ExamScheduleMappingObj.working_days)
+        self.tableWidget.setColumnCount(ExamScheduleMappingObj.total_slots)
         self.tableWidget.move(0, 0)
 
         self.tableWidget.setVerticalHeaderLabels(days_list)
@@ -45,9 +45,9 @@ class Timetable(QWidget):
                 # print(i , j)
                 # print(l)
                 self.tableWidget.setItem(i, j,
-                                         QTableWidgetItem(ExamScheduleMappingObj.single_dimension_array_of_subjects[l]))
+                                         QTableWidgetItem(ExamScheduleMappingObj.random_list[l]))
                 j = j + 1
-                if l < len(ExamScheduleMappingObj.single_dimension_array_of_subjects):
+                if l < len(ExamScheduleMappingObj.random_list):
                     l = l + 1
 
         self.tableWidget.resizeColumnsToContents()
