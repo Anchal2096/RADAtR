@@ -1,5 +1,6 @@
 import sys
 from PyQt5.QtWidgets import *
+from GUI.GUI_ExaminationschedulingFinalAppearance import *
 
 
 class TimetableSchedulingMainWindow(QMainWindow):
@@ -25,7 +26,7 @@ class TimetableSchedulingMainWindow(QMainWindow):
         # self.upper_Title_Widget.setStyleSheet(" border:1px solid rgb(0, 140, 255);")
 
         # this contains three lables and three TextEdits for the user to enter the no of
-        #         slots, working days and number of batches
+        #         shifts, working days and number of batches
         self.upper_Widget = QWidget(self.container)
         # self.upper_Widget.setFixedSize(880, 90)
         self.upper_Widget.setGeometry(30, 20, 800, 90)
@@ -103,7 +104,6 @@ class TimetableSchedulingMainWindow(QMainWindow):
         self.VLine.setFrameShadow(QFrame.Sunken)
         self.top_h_line_Layout.addWidget(self.VLine)
 
-
     """this function adds the last horizontal line
 
     def add_v_line(self):
@@ -123,11 +123,11 @@ class TimetableSchedulingMainWindow(QMainWindow):
         self.last_lineLayout.addWidget(self.VLine)
 
     """ this function creates three lables and three TextEdits for the user to enter the no of
-        slots, working days and number of batches"""
+        shifts, working days and number of batches"""
 
     def textbox_creation(self):
         self.TexteditLayout = QHBoxLayout(self.upper_Widget)
-        self.SlotLabel = QLabel("Enter The Number Of Slots", self.container)
+        self.SlotLabel = QLabel("Enter The Number Of shifts", self.container)
         self.SlotTextbox = QLineEdit(self.upper_Widget)
         self.SlotTextbox.setFixedWidth(100)
         self.SlotTextbox.setFixedHeight(25)
@@ -245,7 +245,7 @@ class TimetableSchedulingMainWindow(QMainWindow):
 
         for i in range(6):
             if self.checkBoxesList[i].isChecked():
-                # print(self.checkBoxesList[i].text())
+                print(self.checkBoxesList[i].text())
                 # print("checked")
                 self.semestersSelected.append(self.checkBoxesList[i].text())
 
@@ -260,20 +260,26 @@ class TimetableSchedulingMainWindow(QMainWindow):
                 # print(self.checkBoxesList[i].text())
                 # print("checked")
                 # self.semestersSelected.append(self.radioButtonList[j].text())
-                self.selectedSemester= self.radioButtonList[j].text()
-                # print(self.selectedSemester)
+                self.selectedSemester = self.radioButtonList[j].text()
+                print(self.selectedSemester)
 
             else:
                 pass
                 # print(self.checkBoxesList[i].text())
                 # print('Unchecked')
-        return self.selectedSemester, self.selectedSemester
-        exit()
+        scheduleoutput_window_obj = ExamScheduleOutputWindow()
+        scheduleoutput_window_obj.show()
 
     def undo_changes(self):
         pass
 
-application = QApplication(sys.argv)
-main_window_obj = TimetableSchedulingMainWindow()
-main_window_obj.show()
-sys.exit(application.exec_())
+
+def main():
+    application = QApplication(sys.argv)
+    main_window_obj = TimetableSchedulingMainWindow()
+    main_window_obj.show()
+    sys.exit(application.exec_())
+
+
+if __name__ == '__main__':
+    main()

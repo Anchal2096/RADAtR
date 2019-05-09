@@ -15,6 +15,7 @@ class MainWindow(QMainWindow):
         # menu bar
         self.menuBar = QMenuBar(self)
         self.menuBar.setGeometry(0, 0, 1080, 29)
+        # self.menuBar.setStyleSheet('background-color: red;')
         # adding Menu Tabs
         self.applicationTab = self.menuBar.addMenu('Application')
         self.aboutTab = self.menuBar.addMenu('About')
