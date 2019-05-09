@@ -62,7 +62,6 @@ def add_course_attribute():
 """To load all the teachers at once (from a JSON file) uncomment below line """
 # load_teachers_at_once()
 
-
 """Too add the course = MCA for the above file load teachers at once uncomment below line
 because the teachers .json file do not have the course field so this line will automatically 
 create a field "course" for them and set the value "MCA".

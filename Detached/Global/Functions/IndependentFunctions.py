@@ -6,7 +6,7 @@ from Detached.Global.Configurations.ConnectionEstablishment import *
    Detached/Global/Configurations/LocalUsersConfigurations.py
    
    File definition:
-   project_location = 'F:\Pycharm\RADAtR'
+   project_location = 'absolute address to the project on your machine'
    e.g. : project_location = '/home/dev/Documents/PycharmProjects/RADAtR/'
    
    Note that this file is not supposed to be on tracking."""
@@ -91,7 +91,7 @@ def add_time_to(initial_time, minutes_to_add):
     zeros_in_minutes_part = 0
     hour_carry = 0
 
-    if len(initial_time) == 4:  # validation of initial time (must be of 4 digits)
+    if len(initial_time) == 4:                      # validation of initial time (must be of 4 digits)
         # storing hours and minutes digits separately
         hours_part = initial_time[0:2]
         minutes_part = initial_time[2:4]
@@ -101,11 +101,11 @@ def add_time_to(initial_time, minutes_to_add):
             if hours_part[i] == '0':
                 zeros_in_hours_part += 1
             else:
-                break  # stop as soon as a non-zero digit is encountered
+                break                               # stop as soon as a non-zero digit is encountered
 
         # conversion of hours part from string to integer
         if zeros_in_hours_part == 2:
-            hours_part = 0  # direct assignment due to base 10 conversion issue
+            hours_part = 0                          # direct assignment due to base 10 conversion issue
         else:
             hours_part = int(hours_part[zeros_in_hours_part:2])
 
@@ -114,7 +114,7 @@ def add_time_to(initial_time, minutes_to_add):
             if minutes_part[i] == '0':
                 zeros_in_minutes_part += 1
             else:
-                break  # stop as soon as a non-zero digit is encountered
+                break                               # stop as soon as a non-zero digit is encountered
 
         # conversion of minutes part from string to integer
         if zeros_in_minutes_part == 2:
@@ -162,8 +162,8 @@ def add_time_to(initial_time, minutes_to_add):
 
 # function to shorten name by returning only last name
 def last_name_only(name):
-    short_name = ''  # initially empty
-    words_in_name = name.split()  # create a list of words present in whole name
+    short_name = ''                                 # initially empty
+    words_in_name = name.split()        # create a list of words present in whole name
 
     # if name consists of single word only, return name as it is.
     if len(words_in_name) == 1:
@@ -177,5 +177,3 @@ def last_name_only(name):
         # appending the last name in acronym
         short_name = short_name + words_in_name[-1]
         return short_name
-
-# print(get_list_of_subject_for("MCA", 5))
